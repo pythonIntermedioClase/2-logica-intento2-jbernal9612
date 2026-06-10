@@ -108,10 +108,9 @@ def calcular_iva(valor_base, tasa=0.19):
         calcular_iva(0)                -> 0.0
     """
     # TODO:
-    # 1. Multiplica valor_base por tasa y guarda el resultado en una
-    #    variable llamada iva.
-    # 2. Retorna iva.
-    pass
+    iva = valor_base * tasa
+    return iva
+
 
 
 def formatear_reporte_valor(nit, nombre, valor, estado):
@@ -132,12 +131,13 @@ def formatear_reporte_valor(nit, nombre, valor, estado):
         -> "NIT 900123456 | Empresa ABC S.A.S. | $1,500,000 | ACTIVO"
     """
     # TODO:
+    linea = f"NIT {nit} | {nombre} | ${valor:,} | {estado}"
     # 1. Construye una cadena usando un f-string con este formato exacto:
     #    "NIT {nit} | {nombre} | ${valor:,} | {estado}"
     #    (el :, dentro del f-string agrega separadores de miles al número)
     # 2. Guarda el resultado en una variable llamada linea.
     # 3. Retorna linea.
-    pass
+    return linea
 
 
 def mostrar_resultado(etiqueta, valor):
@@ -160,45 +160,18 @@ def mostrar_resultado(etiqueta, valor):
 
 
 def generar_ficha_contribuyente(nit, nombre, municipio, periodo, valor, estado):
-    """
-    Genera una ficha formal de contribuyente como texto multilínea.
-
-    Recibe seis parámetros escalares y retorna una cadena con formato
-    de recuadro. Nombre y municipio se muestran en mayúsculas.
-
-    Args:
-        nit (str): NIT del contribuyente.
-        nombre (str): Nombre o razón social.
-        municipio (str): Municipio de registro.
-        periodo (str): Período en formato YYYYMM.
-        valor (float): Valor declarado.
-        estado (str): Estado del registro.
-
-    Returns:
-        str: Texto con la ficha en recuadro.
-
-    Ejemplo de salida:
-        ╔══════════════════════════════════════╗
-        ║  FICHA DE CONTRIBUYENTE              ║
-        ╠══════════════════════════════════════╣
-          NIT        : 900123456
-          Nombre     : EMPRESA ABC S.A.S.
-          Municipio  : BOGOTA
-          Periodo    : 202401
-          Valor      : $1,500,000
-          Estado     : ACTIVO
-        ╚══════════════════════════════════════╝
-    """
-    # TODO:
-    # 1. Convierte nombre a mayúsculas con .upper() y guárdalo en
-    #    una variable llamada nombre_mayusculas.
-    # 2. Convierte municipio a mayúsculas y guárdalo en municipio_mayusculas.
-    # 3. Formatea el valor como cadena: valor_formateado = f"${valor:,}"
-    # 4. Construye la ficha usando un f-string multilínea que contenga
-    #    los caracteres de recuadro y los seis campos.
-    #    Usa las variables intermedias del paso 1, 2 y 3.
-    # 5. Retorna ficha.
-    pass
+    return f"""
+|---------------------------------------------------|
+                FICHA DE CONTRIBUYENTE
+|---------------------------------------------------|
+    NIT                    : {nit}
+    nombre_mayusculas      : {str(nombre).upper()}
+    municipio_mayusculas   : {str(municipio).upper()}
+    Periodo                : {periodo}
+    valor_formateado       : ${valor:,.0f}
+    Estado                 : {estado}
+|---------------------------------------------------|
+    """.strip()
 
 
 # ---------------------------------------------------------------------------
